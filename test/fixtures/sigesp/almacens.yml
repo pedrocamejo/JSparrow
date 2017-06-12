@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+#one:
+#  codemp: MyString
+#  codalm: MyString
+#  nomfisalm: MyString
+#  desalm: MyString
+#  telalm: MyString
+#  ubialm: MyString
+#  nomresalm: MyString
+#  telresalm: MyString
+#  coduniadm: MyString
+#
+#two:
+#  codemp: MyString
+#  codalm: MyString
+#  nomfisalm: MyString
+#  desalm: MyString
+#  telalm: MyString
+#  ubialm: MyString
+#  nomresalm: MyString
+#  telresalm: MyString
+#  coduniadm: MyString

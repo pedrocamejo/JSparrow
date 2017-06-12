@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# one:
+#   codtipart: MyString
+#   dentipart: MyString
+#   obstipart: MyString
+
+# two:
+#   codtipart: MyString
+#   dentipart: MyString
+#   obstipart: MyString

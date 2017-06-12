@@ -1,0 +1,19 @@
+<table class="table">
+  <%= table_head([
+     { title: "Codigo"},
+     { title:"Item"},
+     { title: "Almacen"},
+     { title: "Cantidad"},
+     { title: "Unidad"} ],"1",false) %>
+<tbody class="detallesolictud" style="text-align: center;">
+<% articulos.each do |articulo| %>
+	<tr>
+          <td><%= articulo.articulo.codart %></td>
+          <td><%= articulo.articulo.denart %></td>
+          <td><%= articulo.almacen.nomfisalm unless articulo.almacen.nil? %></td>
+          <td><%= articulo.canart %></td>
+          <td><%= articulo.articulo.unidad.denunimed %></td>
+        </tr>
+        <% end %>
+  </tbody>
+</table> 

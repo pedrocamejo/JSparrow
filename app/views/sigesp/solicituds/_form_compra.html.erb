@@ -1,0 +1,68 @@
+<%= form_for(solicitud,
+    as: :solicitud,
+    url:  sigesp_solicitud_compra_path,
+    html: {
+      class:'form-horizontal',
+       role:'form',
+       onsubmit: "solicitud.guardar_compra(event,this);",
+       id:"formulario",
+       data: {
+          metodo: ( solicitud.numsol.nil? ? "POST": "PATCH" ),
+          compra: true,
+          codtipsol: solicitud.codtipsol
+       }
+  }) do |f| %>
+
+  <div class="panel-body2">
+   <div class="form-group">
+    <%= label_tag :cod_region,"Region", class:"col-md-2 control-label" %>
+    <div class="col-md-2">
+      <%= f.select :cod_region,
+        opciones_regiones(solicitud.region),{},
+        {
+          class: "form-control input-sm",
+          onchange: "solicitud.cargar_sedes(this)"
+        } 
+      %>
+    </div>  
+    <%= label_tag :cod_sede,"Sede",class:"col-md-2 control-label" %>
+    <div class="col-md-2">
+      <%= f.select :cod_sede,
+        opciones_sedes(solicitud.sede,solicitud.region),{},
+        {
+          class: "form-control input-sm" ,
+          onchange: "solicitud.cargar_servicios(this)"
+        }
+      %>
+    </div>
+    <%= label_tag :cod_servicio,"Servicio", class:"col-md-2 control-label" %>
+    <div class="col-md-2">
+      <%= f.select :cod_servicio,
+       opciones_servicio(solicitud.servicio,solicitud.sede),{},
+        {   
+          class: "form-control input-sm"
+        } %>
+    </div>
+  </div> 
+
+  <div class="form-group">
+    <%= label_tag :consol,"Concepto Solicitud ", class:"col-md-2 control-label" %>
+    <div class="col-md-10">
+      <%= f.text_area :consol, 
+          class: "form-control input-sm", 
+          rows:"3"
+        %>
+    </div>
+  </div>
+
+  <% if solicitud.codtipsol == "01"  %>
+    <%= render 'form_detalle_articulo_compra', solicitud: @solicitud, f: f %>
+  <% else %>
+    <%= render 'form_detalle_servicio_compra', solicitud: @solicitud, f: f %>
+
+  <% end %>
+
+  <div align="right"  >
+    <%= submit_tag "Guardar" , class: "btn btn-primary "  %>
+  </div>
+<% end %> 

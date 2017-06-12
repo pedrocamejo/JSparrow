@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# one:
+#   seq_servicio: 1
+#   str_descripcion: MyString
+#   str_codservicio: MyString
+
+# two:
+#   seq_servicio: 1
+#   str_descripcion: MyString
+#   str_codservicio: MyString

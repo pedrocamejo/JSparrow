@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# one:
+#   seq_sede: 1
+#   str_descripcion: MyString
+#   str_codsede: MyString
+#   int_region: 1
+
+# two:
+#   seq_sede: 1
+#   str_descripcion: MyString
+#   str_codsede: MyString
+#   int_region: 1

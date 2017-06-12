@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# one:
+#   codemp: MyString
+#   numsol: MyString
+#   usuario: MyString
+
+# two:
+#   codemp: MyString
+#   numsol: MyString
+#   usuario: MyString

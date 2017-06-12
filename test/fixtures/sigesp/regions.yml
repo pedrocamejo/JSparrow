@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# one:
+#   seq_region: 1
+#   str_descripcion: MyString
+#   str_codregion: MyString
+
+# two:
+#   seq_region: 1
+#   str_descripcion: MyString
+#   str_codregion: MyString

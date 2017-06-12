@@ -1,0 +1,21 @@
+<div class="table-responsive">
+  <table class="table productos">
+    <thead>
+      <tr>
+        <th>Codigo</th>
+        <th>Descripción</th>
+      </tr>
+    </thead>
+   <tbody>
+	 <% @unidades.each do |item| %>
+	 	<tr>
+	 		<td><%= item.coduac %></td>
+     	 	<td><%= item.denuac %></td>
+     	 	<td><%= button_to unidad_cambiar_path()+"?codigo=#{item.coduac}", method: :post, data: { confirm: 'Activar esta Unidad Funcional ?' } do |link| %>
+     	 	 <span data-toggle="tooltip" data-placement="right" title="seleccionar" class="glyphicon glyphicon-cog"></span> <% end %>
+     	 	</td>
+ 		</tr>
+	 <% end %>     
+   </tbody>
+  </table>
+</div> 

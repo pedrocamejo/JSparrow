@@ -1,0 +1,1 @@
+ json.extract! @articulo, :codart , :codalm , :existencia, :articulo ,:almacen

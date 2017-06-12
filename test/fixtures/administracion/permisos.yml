@@ -1,0 +1,49 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+
+one:
+  nombre: Usuario
+  controlador_id: 1
+  accion: :index
+  descripcion: Permite Consulta Lista de Usuarios
+
+tow:
+  nombre: Usuario
+  controlador_id: 1
+  accion: :show
+  descripcion: Permite Consulta Lista de Usuarios
+
+three:
+  nombre: "Usuario"
+  controlador_id: 1
+  accion: :new
+  descripcion: Permite Consulta Lista de Usuarios
+
+four:
+  nombre: Usuario,
+  controlador_id: 1,
+  accion: :edit
+  descripcion: Permite Consulta Lista de Usuarios 
+
+five:
+  nombre: Usuario
+  controlador_id: 1
+  accion: :create
+  descripcion: Permite Consulta Lista de Usuarios 
+
+six:
+  nombre: Usuario
+  controlador_id: 1
+  accion: :update
+  descripcion: Permite Consulta Lista de Usuarios
+
+seven:
+  nombre: Usuario
+  controlador_id: 1
+  accion: :destroy
+  descripcion: Permite Consulta Lista de Usuarios 
+
+
+
+
+

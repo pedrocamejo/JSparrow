@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GORRION</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+   <header>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header"  align="center">
+          <h2 class="titulo-head"><%= link_to "Gorrion", root_path %></h2>
+        </div>
+        <div class="navbar-right ">
+          <%= informacion_usuario if usuario_signed_in? %>
+        </div>
+      </div>
+    </nav> 
+  </header>
+
+  <section class="containner-fuild">
+     <div class="col-md-2">
+      <%= menu if usuario_signed_in? %> 
+     </div>
+     <%= content_accion :div,
+        id: "acion",
+        class: "col-md-10", 
+        style: "height: 70%"  do %>
+        <div class="panel panel-default row">
+          <div class="panel-body">
+            <%= yield %> 
+          </div>
+        </div>
+      <% end %>
+    </section>
+
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,186 @@
+<div class="panel-body2"  style="height: 95%;">
+  <%= link_to 'Regresar', sigesp_solicituds_path, class: "btn btn-default btn-sm" %>
+  <%= link_to 'Mostrar',sigesp_solicitud_path(@solicitud),class:  "btn btn-default btn-sm" %>       
+</div>
+
+<div class="panel panel-primary">
+  <a name="<%= @solicitud.numsol %>"></a> 
+  <div class="panel-heading">
+      <strong>N°Control:</strong> <%= @solicitud.numsol %>      
+  </div>
+  <div class="panel-body">
+  <div class="formulario_solicitud_presupuesto"> 
+    <%= render 'presupuesto' %>
+  </div>
+
+    <div class="row" style=" margin-bottom:10px;">
+      <div class="col-md-3">
+        <strong>REGION :</strong>
+        <%= @solicitud.region.str_descripcion %> 
+      </div>
+      <div class="col-md-3">
+        <strong>SEDE :</strong>
+        <%= @solicitud.sede.str_descripcion %> 
+      </div>
+      <div class="col-md-3">
+        <strong>SERVICIO :</strong>
+        <%= @solicitud.servicio.str_descripcion %> 
+      </div>
+        <div class="col-md-3">
+          <strong> Fecha  :</strong><%= @solicitud.fecregsol %>
+        </div>
+    </div>
+
+    <div class="row" style="margin-bottom:10px;">
+        <div class="col-md-3">
+          <strong>Tipo :</strong><%= tipoSolicitud(@solicitud.tipoSolicitud.dentipsol) unless @solicitud.tipoSolicitud.nil? %>
+        </div>
+      <div class="col-md-6">
+        <strong>Unidad :</strong>
+          <%= @solicitud.unidad.denuac %>
+      </div>
+      <div class="col-md-3">
+        <strong> Estado :</strong>
+        <%= estadoSolicitud(@solicitud.estsol) %>
+      </div>
+    </div>
+
+    <div class="row" style="margin-bottom:10px;">
+        <div class="col-md-5">
+          <strong>Fuente de Financiamiento:</strong> <%= @solicitud.fuenteFinanciamiento.denfuefin unless @solicitud.fuenteFinanciamiento.nil? %>
+        </div>
+
+        <div class="col-md-5">
+          <strong>Unidad Administrativa :</strong>
+            <%= @solicitud.unidadAdministrativa.denuniadm unless @solicitud.unidadAdministrativa.nil? %>
+        </div>
+    </div>
+
+    <div class="row" style="margin-bottom:10px;">
+     <div class="col-md-12">
+       <strong>CONCEPTO :</strong> <%= @solicitud.consol %>
+      </div>
+    </div>
+
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#detalle" data-toggle="tab">DETALLE REQUISICION</a></li>
+    <li><a href="#cargo" data-toggle="tab">CARGOS DEL DETALLE</a></li>
+    <li><a href="#gastos" data-toggle="tab">CUENTAS GASTOS</a></li>
+    <li><a href="#cargorequisicion" data-toggle="tab">CARGOS REQUISICION</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane active" id="detalle">
+      <table class="table">
+      <%= table_head([{:title => "Codigo"},{:title => "Item"},{:title => "Unidad"},{:title => "Cantidad"},{:title => "Precio"},{:title => "Total"}]) if @solicitud.codtipsol == "01"  %>
+      <%= table_head([{:title => "Codigo"},{:title => "Item"},{:title => "Cantidad"},{:title => "Precio"},{:title => "Total"}]) if @solicitud.codtipsol == "02"  %>
+      <tbody class="detallesolictud">
+        <% if @solicitud.codtipsol == "01"   %>
+          <% @solicitud.articulos.each do |articulo| %>
+          <tr>
+            <td><%= articulo.articulo.codart %></td>
+            <td><%= articulo.articulo.denart %></td>
+            <td><%= articulo.unidad %></td>
+            <td><%= articulo.canart %></td>
+            <td><%= articulo.monpre %></td>
+            <td><%= articulo.monart %></td>
+          </tr>
+          <% end %>
+        <% else %>
+          <% @solicitud.servicios.each do |servicio| %>
+          <tr>
+            <td><%= servicio.servicio.codser %></td>
+            <td><%= servicio.servicio.denser %></td>
+            <td><%= servicio.canser %></td>
+            <td><%= servicio.monpre %></td>
+            <td><%= servicio.monser %></td>
+          </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+      </table> 
+    </div>   <!-- end detalle --> 
+    <div class="tab-pane" id="cargo">
+      <table class="table">
+      <%= table_head([{:title => "Codigo"},{:title => "Codigo Cargo"},{:title => "Descripcion Cargo"},{:title => "%"}]) %>
+      <tbody class="detallesolictud">
+        <% if @solicitud.codtipsol == "01"   %>
+          <% @solicitud.articulos_cargos.each do |articulo_cargo| %>
+          <tr> 
+            <td><%= articulo_cargo.articulo.codart %></td>
+            <td><%= articulo_cargo.cargo.codcar %></td>
+            <td><%= articulo_cargo.cargo.dencar  %></td>
+            <td><%= "#{articulo_cargo.cargo.porcar}%" %></td>
+          </tr>
+          <% end %>
+        <% else %>
+          <% @solicitud.servicios_cargos.each do |servicio_cargo| %>
+          <tr>
+            <td><%= servicio_cargo.servicio.codser %></td>
+            <td><%= servicio_cargo.cargo.codcar %></td>
+            <td><%= servicio_cargo.cargo.dencar  %></td>
+            <td><%= "#{servicio_cargo.cargo.porcar}%" %></td>
+          </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+      </table> 
+    </div> <!--  End cargo --> 
+    <div class="tab-pane" id="gastos">
+      <table class="table">
+        <%= table_head([{:title => "Estructura 1"},{:title => "Estructura 2"},{:title => "Estructura 3"},{:title => "Estructura 4"},{:title => "Estructura 5"},{:title => "Cuenta"},{:title => "Monto"}]) %>
+        <tbody class="detallesolictudCargos">
+          <% @solicitud.gastos.each do |gasto| %>
+            <tr>
+              <td><%= gasto.codestpro1 %></td>
+              <td><%= gasto.codestpro2 %></td>
+              <td><%= gasto.codestpro3 %></td>
+              <td><%= gasto.codestpro4 %></td>
+              <td><%= gasto.codestpro5 %></td>
+              <td><%= gasto.spg_cuenta %></td>
+              <td><%= gasto.monto %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table> 
+    </div> <!-- end Gastos  -->
+    <div class="tab-pane" id="cargorequisicion">
+      <table class="table">
+        <%= table_head([{:title => "Cargo"},{:title => "Estructura 1"},{:title => "Estructura 2"},{:title => "Estructura 3"},{:title => "Estructura 4"},{:title => "Estructura 5"},{:title => "Cuenta"}]) %>
+        <tbody class="detallesolictudCargos">
+          <% @solicitud.cargos.each do |cargo| %>
+            <tr>
+              <td><%= cargo.cargo.dencar  %></td>
+              <td><%= cargo.codestpro1 %></td>
+              <td><%= cargo.codestpro2 %></td>
+              <td><%= cargo.codestpro3 %></td>
+              <td><%= cargo.codestpro4 %></td>
+              <td><%= cargo.codestpro5 %></td>
+              <td><%= cargo.spg_cuenta %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table> 
+    </div> <!-- end cargorequisicion  -->
+
+  </div>
+
+  <div class="row" style=" margin-bottom:10px;">
+    <div class="col-md-3 col-md-offset-9" align="center" >
+      <label><strong>Monto :</strong>
+      <%= @solicitud.monto %> </label>
+    </div>
+    <div class="col-md-3 col-md-offset-9" align="center" >
+      <label><strong>Cargo :</strong>
+      <%= @solicitud.montotcar %> </label>
+    </div>
+    <div class="col-md-3 col-md-offset-9" align="center">
+      <label><strong>Total :</strong>
+      <%= @solicitud.monbasinm %> </label>  
+    </div>
+  </div>
+</div> <!-- end panel body --> 
+</div>
+
+
+ 

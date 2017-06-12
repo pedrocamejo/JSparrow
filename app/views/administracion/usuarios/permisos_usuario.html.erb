@@ -1,0 +1,58 @@
+<div class="panel-body2"  style="height: 95%;">
+  <%= link_to 'Regresar',  administracion_usuarios_path ,class:"btn btn-default btn-sm" %>
+  <%= link_to 'Editar', edit_administracion_usuario_path(@administracion_usuario), class:"btn btn-default btn-sm" %> 
+</div>
+<div class="panel panel-default">
+	<div class="panel-body">
+		<div class="row" style="">
+		  <div class="col-md-4">
+		    <label class="list-group-item-heading"
+		    	 style="font-weight: bold;">UserName 
+			    <%= @administracion_usuario.username  %>
+		    </label>
+		  </div>
+		  <div class="col-md-4">
+		    <label class="list-group-item-heading"
+		    	 style="font-weight: bold;">Cedula 
+			    <%= @administracion_usuario.cedula  %>
+		    </label>
+		  </div>
+		  <div class="col-md-4">
+		    <label class="list-group-item-heading"
+		    	 style="font-weight: bold;">Nombres 
+			    <%= @administracion_usuario.nombres  %>
+		    </label>
+		  </div>
+
+		</div>
+	</div>
+</div>
+
+<% if flash[:notice] %>
+    <div class="alert alert-success" role="alert"><%= notice %>
+    	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+ 			 <span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+<% end %>
+
+<h3 class="page-header"> Permisos </h3>
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <% @controladores.each do |controlador|   %>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="<%= controlador.id%>">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#<%= controlador.id %>c" aria-controls="<%= controlador.id %>c">
+          <%= controlador.descripcion %>
+        </a>
+      </h4>
+    </div>
+    <div id="<%= controlador.id %>c" class="panel-collapse collapse " role="tabpanel" aria-labelledby="<%= controlador.id%>">
+      <div class="panel-body">
+      	<%=  permisos_activos(controlador.permisos,@administracion_usuario)   %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
+

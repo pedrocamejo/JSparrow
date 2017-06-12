@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# one:
+#   codemp: MyString
+#   numsol: MyString
+#   bol_compra: false
+#   coddepalmacen: MyString
+
+# two:
+#   codemp: MyString
+#   numsol: MyString
+#   bol_compra: false
+#   coddepalmacen: MyString

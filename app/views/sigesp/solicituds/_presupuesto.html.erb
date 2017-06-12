@@ -1,0 +1,57 @@
+<% url = sigesp_solicitud_presupuesto_path(@solicitud)  %>
+<%= form_for(@solicitud,url: url , html: {class:'form-horizontal', role:'form',id:"formulario"}) do |f| %>
+
+  <% if @solicitud.errors.any? %>
+    <div id="error_explanation">
+      <ul  class="list-group">
+      <% @solicitud.errors.full_messages.each do |msg| %>
+        <li class="alert alert-danger" ><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= f.label :fuenteFinanciamiento,class:"col-md-2 control-label"  %>
+    <div class="col-md-4">
+        <%= f.collection_select(:codfuefin,
+          Sigesp::FuenteFinanciamiento.all,
+          :codfuefin,
+          :denfuefin,
+          { :prompt=>true },
+          {
+            class: "form-control input-sm",
+            onchange: "solicitudPresupuesto.cargarUnidadAdministrativas(this);",
+               data: { 
+               url: sigesp_unidadesAdministrativas_path(:json)
+               }
+           })
+          %>
+    </div>  
+
+    <%= label_tag :unidadAdministrativa, class:"col-md-2 control-label" do |n| %> Unidad Administrativa <% end %>
+    <div class="col-md-4">
+       <%= select_tag "sigesp_solicitud[coduniadm]",
+          opciones_unidad_administrativa(@solicitud.unidadAdministrativa,@solicitud.fuenteFinanciamiento),
+          html_options={
+            class: "form-control input-sm",required: "required"} %>
+      <% spg =  @solicitud.spg_ep1_5 %>
+      <label id="codigopresupuestario">
+        <%= "#{spg[:codestpro1]}--#{spg[:codestpro2]}--#{spg[:codestpro3]}--#{spg[:codestpro4]}--#{spg[:codestpro5]}"%>
+      </label>
+    </div>
+  </div>
+  <%= hidden_field_tag "codestpro1",spg[:codestpro1] %>
+  <%= hidden_field_tag "codestpro2",spg[:codestpro2] %>
+  <%= hidden_field_tag "codestpro3",spg[:codestpro3] %>
+  <%= hidden_field_tag "codestpro4",spg[:codestpro4] %>
+  <%= hidden_field_tag "codestpro5",spg[:codestpro5] %>
+
+  <div align="right">
+    <%= submit_tag "Guardar" , class: "btn btn-primary "  %>
+  </div>
+
+<% end %>
+
+<script type="text/javascript">
+  this.solicitudPresupuesto.inicializar()
+</script>

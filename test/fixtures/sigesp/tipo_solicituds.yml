@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# one:
+#   codtipsol: MyString
+#   dentipsol: MyString
+#   estope: MyString
+#   modsep: MyString
+
+# two:
+#   codtipsol: MyString
+#   dentipsol: MyString
+#   estope: MyString
+#   modsep: MyString

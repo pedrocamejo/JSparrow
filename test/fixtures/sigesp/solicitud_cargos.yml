@@ -1,0 +1,45 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# one:
+#   codemp: MyString
+#   numsol: MyString
+#   codcar: MyString
+#   codestpro1: MyString
+#   codestpro2: MyString
+#   codestpro3: MyString
+#   codestpro4: MyString
+#   codestpro5: MyString
+#   spg_cuenta: MyString
+#   monobjret: 1.5
+#   monret: 1.5
+#   cod_pro: MyString
+#   ced_bene.string: MyString
+#   sc_cuenta: MyString
+#   formula: MyString
+#   monto: 1.5
+#   monobjretaux: 1.5
+#   monretaux: 1.5
+#   montoaux: 1.5
+#   codfuefin: MyString
+
+# two:
+#   codemp: MyString
+#   numsol: MyString
+#   codcar: MyString
+#   codestpro1: MyString
+#   codestpro2: MyString
+#   codestpro3: MyString
+#   codestpro4: MyString
+#   codestpro5: MyString
+#   spg_cuenta: MyString
+#   monobjret: 1.5
+#   monret: 1.5
+#   cod_pro: MyString
+#   ced_bene.string: MyString
+#   sc_cuenta: MyString
+#   formula: MyString
+#   monto: 1.5
+#   monobjretaux: 1.5
+#   monretaux: 1.5
+#   montoaux: 1.5
+#   codfuefin: MyString

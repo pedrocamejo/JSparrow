@@ -1,0 +1,47 @@
+<%= form_for(@plantilla, html: {class:'form-horizontal', role:'form',id:"formulario"}) do |f| %>
+  <% if @plantilla.errors.any? %>
+    <div id="error_explanation">
+    <ul>
+      <% @plantilla.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :nombre, class:"col-md-1 control-label" %>
+    <div class="col-md-3">
+       <%= f.text_field :nombre, class: "form-control input-sm" %>
+    </div>
+
+   <% if  action_name == "new" or  action_name == "crear" %>
+    <%= f.label  :tipo,"Tipo",class:"col-sm-1 control-label" %>
+    <div class="col-sm-2" >
+      <%= f.select :tipo,options_for_select({articulo:1, servicio:2}),{},{class:"form-control input-sm "}  %>
+    </div>
+    <%= f.label  :compra,"Pertenece a compra",class:"col-sm-2 control-label" %>
+    <div class="col-sm-1" >
+      <%= f.check_box :compra, class:"form-control input-sm ", maxlength:250 %>
+    </div>
+  <% end %>
+  </div>
+
+
+  <div class="form-group">
+    <%=f.label :descripcion,class:"col-md-1 control-label" %>
+     <div class="col-md-10">
+      <%= f.text_area :descripcion, class: "form-control input-sm", rows:"4"  %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-md-1 col-md-offset-11">
+      <%= submit_tag "Guardar" , class: "btn btn-primary "  %>
+    </div>
+
+  </div>
+<% end %>
+
+
+ 

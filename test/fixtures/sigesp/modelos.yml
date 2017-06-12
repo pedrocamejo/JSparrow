@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# one:
+#   id_modelo: 1
+#   str_idmarca: MyString
+#   str_idmodelo: MyString
+#   str_descripcion: MyString
+
+# two:
+#   id_modelo: 1
+#   str_idmarca: MyString
+#   str_idmodelo: MyString
+#   str_descripcion: MyString

@@ -1,0 +1,51 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# one:
+#   codemp: MyString
+#   numsol: MyString
+#   codart: MyString
+#   canart: 1.5
+#   unidad: MyString
+#   monpre: 1.5
+#   monart: 1.5
+#   orden: 1
+#   codestpro1: MyString
+#   codestpro2: MyString
+#   codestpro3: MyString
+#   codestpro4: MyString
+#   codestpro5: MyString
+#   spg_cuenta: MyString
+#   estincite: MyString
+#   numdocdes: MyString
+#   monpreaux: 1.5
+#   monartaux: 1.5
+#   codalm: MyString
+#   cod_servicio: MyString
+#   cod_sede: MyString
+#   cod_region: MyString
+#   str_codregionsedeservicio: MyString
+
+# two:
+#   codemp: MyString
+#   numsol: MyString
+#   codart: MyString
+#   canart: 1.5
+#   unidad: MyString
+#   monpre: 1.5
+#   monart: 1.5
+#   orden: 1
+#   codestpro1: MyString
+#   codestpro2: MyString
+#   codestpro3: MyString
+#   codestpro4: MyString
+#   codestpro5: MyString
+#   spg_cuenta: MyString
+#   estincite: MyString
+#   numdocdes: MyString
+#   monpreaux: 1.5
+#   monartaux: 1.5
+#   codalm: MyString
+#   cod_servicio: MyString
+#   cod_sede: MyString
+#   cod_region: MyString
+#   str_codregionsedeservicio: MyString

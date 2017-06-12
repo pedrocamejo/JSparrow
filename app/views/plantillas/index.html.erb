@@ -1,0 +1,13 @@
+<%= render partial: "/shared/flash_messages", flash: flash %> 
+<div class="panel-body2"  style="height: 95%;">
+    <div class="row">
+        <div class="col-sm-4 col-md-4" >
+          <%= link_to 'Nuevo', new_plantilla_path, class: "btn btn-default btn-sm"  %>
+        </div>
+        <div class="col-md-8" align="right">
+           <%= buscar(plantillas_path,["nombre","descripcion"]) %>
+        </div>
+    </div>
+    <%= tabla_panel_responsive([{title:"Nombre"},{title:"Descripción"},{title:"Compra"},{title:"Tipo"}],@plantillas)%>
+    <%= paginador(@plantillas) %>
+</div>

@@ -1,0 +1,28 @@
+<h3>Articulos</h3>
+<%= link_to "Agregar",plantilla_articulos_path(plantilla),
+  class: "btn btn-default btn-sm",
+  type: "button"
+%>
+<table class="table table-hover">
+  <%=table_head([{title:"codigo"},{title:"Denominacion"},{title:"Tipo"},{title:"Unidad"}]) %>
+  <tbody> 
+  <% plantilla.articulos.each do |item| %>
+    <tr >
+      <td><%= item.codart %></td>
+      <td><%= truncate(item.denart,length: 90) %></td>
+      <td><%= item.tipo_articulo.dentipart %></td>
+      <td><%= item.unidad.denunimed %></td>
+      <td>
+       <%= button_to('Eliminar',
+          plantilla_articulo_rm_path(plantilla,item.codart),
+          method: "delete",
+          remote: true ,
+          class:"btn btn-xs btn-danger",
+          data: { 
+            confirm: "Quieres quitar el articulo #{item.denart}" 
+          }) %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table> 

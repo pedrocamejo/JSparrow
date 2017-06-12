@@ -1,0 +1,127 @@
+<%= form_for(solicitud, 
+    url: url ,
+    as: :solicitud,
+    html: { 
+      class:'form-horizontal', 
+      role:'form',
+      onsubmit: "solicitudAlmacen.guardar(event,this);",
+      data: {
+        metodo: ( solicitud.numsol.nil? ? "POST": "PATCH" )
+      }
+  }) do |f| %>
+  <div class="panel-body2">
+  <div class="form-group">
+    <%= label_tag :cod_region,"Region", class:"col-md-2 control-label" %>
+    <div class="col-md-2">
+      <%= f.select :cod_region,
+        opciones_regiones(solicitud.region),{},
+        {
+          class: "form-control input-sm",
+          onchange: "solicitudAlmacen.cargar_sedes(this)"
+        } 
+      %>
+    </div>  
+    <%= label_tag :cod_sede,"Sede",class:"col-md-2 control-label" %>
+    <div class="col-md-2">
+      <%= f.select :cod_sede,
+        opciones_sedes(solicitud.sede,solicitud.region),{},
+        {
+          class: "form-control input-sm" ,
+          onchange: "solicitudAlmacen.cargar_servicios(this)"
+        }
+      %>
+    </div>
+    <%= label_tag :cod_servicio,"Servicio", class:"col-md-2 control-label" %>
+    <div class="col-md-2">
+      <%= f.select :cod_servicio,
+       opciones_servicio(solicitud.servicio,solicitud.sede),{},
+        {   
+          class: "form-control input-sm"
+        } %>
+    </div>
+  </div> 
+
+  <div class="form-group">
+    <%= label_tag :consol,"Concepto Solicitud ", class:"col-md-2 control-label" %>
+    <div class="col-md-10">
+      <%= f.text_area :consol, 
+          class: "form-control input-sm", 
+          rows:"3"
+        %>
+    </div>
+  </div>
+
+  <div  class="form-group form-group-sm">
+    <div class="col-md-11 col-md-offset-1">
+    <%= button_tag "Agregar",
+      class: "btn btn-default btn-sm",
+      type: "button",
+      id: "agregar_producto",
+      onClick: "solicitudAlmacen.cargar_catalogo(this)",
+      data: {
+        editar: editar,
+        almacen: (almacen.nil? ? "" : almacen.codalm),
+        numsol: solicitud.numsol
+      }
+    %>
+
+    <table class="table table-body" >
+      <%= table_head([ 
+          {:title => "Codigo"},
+          {:title => "Item"},
+          {:title => "Cantidad"},
+          {:title => "Unidad"},
+          {:title=>"Almacen"},
+          {:title=>"Existencia"},
+          {:title=>""}]) %>
+      <tbody id="detalle_articulos_solicitud" data-canart="<%= solicitud.articulos.size %>">
+        <%= f.fields_for :articulos do |dt_fields| %>
+          <%= content_tag :tr, id: dt_fields.object.codart, data: {
+              codart: dt_fields.object.codart,
+              codalm: dt_fields.object.codalm,
+              denart: dt_fields.object.articulo.denart,
+              exiart: dt_fields.object.articulo.exiart,
+              unidad: dt_fields.object.unidad,
+              desalm: dt_fields.object.almacen.desalm
+            } do  %> 
+            <td>
+              <%= dt_fields.hidden_field :codart, class: "codart" %>              
+              <%= dt_fields.hidden_field :codalm, class: "codalm" %>              
+              <%= dt_fields.object.codart %>
+            </td>
+            <td>
+              <%= dt_fields.object.articulo.denart %>
+            </td>
+            <td>
+               <%= dt_fields.number_field :canart,
+                class: "cantidad",
+                min: "1",
+                max: dt_fields.object.articulo.exiart
+               %>              
+            </td>
+            <td>
+              <%= dt_fields.object.unidad %>
+            </td>
+            <td>
+              <%= dt_fields.object.almacen.desalm %>
+            </td>
+            <td>
+              <%= dt_fields.object.articulo.exiart %>
+            </td>
+            <td><%= button_tag "Quitar",
+                class:   "btn btn-danger btn-sm",
+                type: "button",
+                onClick: "solicitudAlmacen.quitarProducto('#{dt_fields.object.codart}')"
+              %>
+            </td>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>        
+    </div>
+  </div>
+
+  <div  class="col-md-12" align="right"  >
+    <%= submit_tag "Guardar" , class: "btn btn-primary "  %>
+  </div>
+<% end %>

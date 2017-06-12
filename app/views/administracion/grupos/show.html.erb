@@ -1,0 +1,40 @@
+<div class="panel-body2"  style="height: 95%;">
+  <%= link_to 'Regresar',  administracion_grupos_path ,class:"btn btn-default btn-sm" %>
+  <%= link_to 'Permisos',administracion_grupo_permisos_path(@administracion_grupo),class:"btn btn-default btn-sm"%>
+  <%= link_to 'Editar', edit_administracion_grupo_path(@administracion_grupo), class:"btn btn-default btn-sm" %> 
+</div>
+<div class="panel-body2"  style="height: 95%; padding-top: 10px;">
+  <%= render partial: "/shared/flash_messages", flash: flash %> 
+
+  <%= detalle "Id : ",@administracion_grupo.id %>
+  <%= detalle "Nombre :",@administracion_grupo.nombre  %>
+  <%= detalle "Estado :",(@administracion_grupo.estado ? "Activo": "Inactivo " )  %>
+
+<div class="col-md-12">
+ 	<h4 class="list-group-item-heading" style="font-weight: bold;">Permisos</h4>
+  <% @controladores.each_key do |key| %>
+		<div class="col-md-4">
+			<div class="thumbnail">
+			<ul class="list-group">
+				<li class="list-group-item active"><%= key.descripcion %></li>
+				<% @controladores[key].each do |value| %>			  			
+					<li class="list-group-item"><%= value.descripcion %></li>
+	  		<% end %>
+			</ul>
+		</div>
+		</div>
+	<% end %>
+</div>
+
+
+</div>
+  
+
+
+
+
+
+
+
+
+

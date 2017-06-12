@@ -1,0 +1,2 @@
+json.extract! @solicitud, :id, :codemp, :numsol, :codtipsol, :estsol, :consol, :monto, :monbasinm, :montotcar,   :cod_servicio, :cod_sede, :cod_region, :str_codregionsedeservicio 
+json.url sigesp_solicitud_path(@solicitud)

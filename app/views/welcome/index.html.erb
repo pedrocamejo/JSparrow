@@ -1,0 +1,38 @@
+<% unless usuario_signed_in? %>
+<div style="margin-top:5%; margin-left:5%; margin-right:10%;">
+  <div align="right"  >
+    <h2>Iniciar Session <small> Ingrese su login y contraseña </small></h2>
+    <%= form_for(@usuario,
+      as: :usuario,
+      url: usuario_session_path(@usuario),
+      html: {    
+        class:'form-inline', 
+        role:'form'
+      }) do |f| %>
+      <div class="form-group" style="margin: 10px;">
+        <%= f.text_field :login,
+          autofocus: true,
+          placeholder: "login",
+          class: "form-control" %>
+        <%= f.password_field :password,
+          autocomplete: "off",
+          placeholder: "password",
+          class: "form-control" %>
+        <%= f.submit "Log in",
+          class: "btn btn-primary" %>
+      </div>
+      <%= content_tag(:div,
+        content_tag(:label,
+          @error,
+          class: "label label-danger",
+            style: "font-size: 12px;"),
+            style: "margin: 10px;") %>
+    <% end %>    
+  </div>
+</div>
+<% else %>
+  <div class="page-header" >
+    <h2> Bienvenido <%= current_usuario.nombres %></h2>
+    <%= render partial: "/shared/flash_messages", flash: flash %> 
+  </div>  
+<% end %>

@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# one:
+#   codemp: MyString
+#   numsol: MyString
+#   codser: MyString
+#   codcar: MyString
+#   monbasimp: 1.5
+#   monimp: 1.5
+#   monto: 1.5
+#   formula: MyString
+#   monbasimpaux: 1.5
+#   monimpaux: 1.5
+#   montoaux: 1.5
+
+# two:
+#   codemp: MyString
+#   numsol: MyString
+#   codser: MyString
+#   codcar: MyString
+#   monbasimp: 1.5
+#   monimp: 1.5
+#   monto: 1.5
+#   formula: MyString
+#   monbasimpaux: 1.5
+#   monimpaux: 1.5
+#   montoaux: 1.5

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# one:
+#   codemp: MyString
+#   codper: MyString
+#   cedper: MyString
+#   nomper: MyString
+#   apeper: MyString
+#   dirper: MyString
+
+# two:
+#   codemp: MyString
+#   codper: MyString
+#   cedper: MyString
+#   nomper: MyString
+#   apeper: MyString
+#   dirper: MyString

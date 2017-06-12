@@ -1,0 +1,28 @@
+<h3>Servicios</h3>
+<%= link_to "Agregar",plantilla_servicios_path(plantilla),
+  class: "btn btn-default btn-sm",
+  type: "button"
+%>
+<table class="table table-hover">
+  <%=table_head([{title:"codigo"},{title:"Denominacion"},{title:"Tipo"},{title:"Unidad"}]) %>
+  <tbody> 
+    <% plantilla.servicios.each do |item| %>
+      <tr>
+        <td><%= item.codser %></td>
+        <td><%= truncate(item.denser,length: 90) %></td>
+        <td><%= item.tipo_servicio.dentipser %></td>
+        <td><%= item.unidad.denunimed %></td>
+        <td>
+       <%= button_to('Eliminar',
+          plantilla_servicio_rm_path(plantilla,item.codser),
+          method: "delete",
+          remote: true ,
+          class:"btn btn-xs btn-danger",
+          data: { 
+            confirm: "Quieres quitar el articulo #{item.codser}" 
+          }) %>          
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table> 

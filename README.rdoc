@@ -1,0 +1,71 @@
+== README
+
+This README would normally document whatever steps are necessary to get the
+application up and running.
+
+Things you may want to cover:
+
+* Ruby version
+
+* System dependencies
+
+* Configuration
+
+* Database creation
+
+* Database initialization
+
+* Tablas del Gorrion para hacer las migracion
+
+* public.sep_tiposolicitud
+
+* sigesp_espc.sigesp_ctrl_requisicion
+
+* gorrion.administracion_controladors
+
+* gorrion.administracion_grupos
+
+* gorrion.administracion_grupos_usuarios
+
+* gorrion.administracion_permiso_grupos
+
+* gorrion.administracion_permisos_usuarios
+
+* gorrion.administracion_permisos
+
+* gorrion.administracion_usuarios
+
+* gorrion.articulos_plantillas
+
+* gorrion.plantillas
+
+* gorrion.plantillas_servicios
+
+* gorrion.schema_migrations 
+
+* gorrion.usuario_unidades
+
+* gorrion.administracion_controladors_id_seq
+
+* gorrion.administracion_grupos_id_seq
+
+* gorrion.administracion_permiso_grupos_id_seq
+
+* gorrion.administracion_permiso_usuarios_id_seq
+
+* gorrion.administracion_permisos_id_seq
+
+* gorrion.administracion_usuarios_id_seq
+
+* gorrion.plantillas_id_seq
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...
+
+Please feel free to use a different markup language if you do not plan to run
+<tt>rake doc:app</tt>.

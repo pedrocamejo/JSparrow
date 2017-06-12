@@ -1,0 +1,51 @@
+  <div  class="form-group form-group-sm">
+    <div class="col-md-11 col-md-offset-1">
+    <%= button_tag "Agregar",
+      class: "btn btn-default btn-sm",
+      type: "button",
+      id: "agregar_producto",
+      onClick: "solicitud.cargar_catalogo_servicios(this)"
+    %>
+    <table class="table table-body" >
+      <%= table_head([ 
+        { title: "Codigo", width: "10%"},
+        { title: "Item", width: "40%" },
+        { title: "Cantidad", width: "20%"},
+        { title: "Unidad", width: "20%"} ]) %>
+
+      <tbody id="detalle_servicios_solicitud" data-canser="<%= solicitud.servicios.size %>">
+        <%= f.fields_for :servicios do |dt_fields| %>
+          <%= content_tag :tr, id: dt_fields.object.codser, data: {
+              codser: dt_fields.object.codser,
+              denser: dt_fields.object.servicio.denser,
+              unidad: dt_fields.object.servicio.unidad.denunimed,
+              porcar: dt_fields.object.servicio.cargo_activo.porcar
+            } do  %> 
+            <td style="width: 10%">
+              <%= dt_fields.object.codser %>
+            </td>
+            <td style="width: 40%">
+              <%= dt_fields.object.servicio.denser %>
+            </td>
+            <td style="width: 20%; align-content:center">
+               <%= dt_fields.number_field :canser,
+                class: "cantidad",
+                min: "1"
+               %>              
+            </td>
+            <td style="width: 20%">
+              <%= dt_fields.object.servicio.unidad.denunimed %>
+            </td>
+            <td style="width: 5%; align-content:center"><%= button_tag "Quitar",
+                class:   "btn btn-danger btn-xs",
+                type: "button",
+                onClick: "solicitud.quitarServicio('#{dt_fields.object.codser}')"
+              %>
+            </td>
+          <% end %>
+
+        <% end %>
+      </tbody>
+    </table>        
+    </div>
+  </div>

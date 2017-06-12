@@ -1,0 +1,23 @@
+
+
+
+
+<div  style="margin-top:70px;padding-bottom: 75px;">
+	<div class="col-md-3" align="right">
+		<%= image_tag("exclamation.png",height:40, style: "margin-top:10px; margin-left:70px;") %>
+	</div>
+	<div class="col-md-6">
+		<%= error_mensaje @exception  %>
+	</div>
+</div>
+
+<br/>
+<br/>
+<div align="right">
+	<%= content_tag :label do |h| %>
+		<%= " error --> #{@exception.action} -- #{@exception.subject}  "  %>
+	<% end  %>
+</div>
+
+
+

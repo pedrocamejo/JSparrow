@@ -1,0 +1,56 @@
+ <div class="panel-body2"  style="height: 95%;">
+  <%= link_to 'Mostrar', @plantilla, class: "btn btn-default btn-sm" %>
+</div>
+
+<div class="buscararticulo" align="right" >
+  <%= form_tag  plantilla_servicios_path(@plantilla), class: 'form-inline formbuscar',  method: 'GET'   do  %>     
+    <div class="form-group">
+      <%= select_tag :sort ,options_for_select(["codigo","descripcion"],params[:sort]), class: "form-control",style: "width:150px;" %>
+      <%= text_field_tag :search, params[:search], class:"form-control", style:"width:inherid"  %>  
+      <%= submit_tag "Buscar",class: 'btn btn-primary buscararticulo', name: :buscar  %>  
+    </div>
+  <% end %>  
+</div>
+
+<div class="table-responsive">
+  <div class ="row buscar">
+  </div>
+
+  <table class="table servicios  table-striped">
+      <%=table_head([{title:"codigo"},{title:"Denominacion"},{title:"Tipo"},{title:"Unidad"}]) %>
+    <tbody>
+    <% @servicios.each do |item| %>
+	    <%= content_tag :tr  do |tr| %>
+	 		<td><%= item.codser %></td>
+	 	  	<td><%= truncate(item.denser,length: 90) %></td>
+	       	<td><%= item.tipo_servicio.dentipser %></td>
+	       	<td><%= item.unidad.denunimed %></td>
+		    <td>
+          <%= button_to('Agregar',
+           plantilla_servicio_add_path(@plantilla.id,servicio_id: item.codser),
+          method: "post",
+          remote: true ,
+          class:"btn btn-xs btn-primary",
+          data: { 
+            confirm: "Quieres Agregar el servicio #{item.denser}" 
+          }) %>  
+        </td>
+	    <% end %>
+ 	<% end %>     
+    </tbody>
+  </table>
+</div> 
+
+<div class="row">
+  <div class="col-md-4">
+    <label><%= page_entries_info @servicios %></label>
+  </div>
+  <div class="col-md-8 catalagoArticulo" 
+          data-url="<%=  sigesp_articulos_path  %>">
+    <%= will_paginate @servicios,renderer: BootstrapPagination::Rails, controller: :plantillas, action: :servicios %>
+  </div>
+</div> 
+
+
+
+ 

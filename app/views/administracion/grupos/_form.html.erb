@@ -1,0 +1,35 @@
+
+<%= form_for(@administracion_grupo, html: {class:'form-horizontal', role:'form'}) do |f| %>
+  <% if @administracion_grupo.errors.any? %>
+
+    <div id="error_explanation">administracion_grupo
+      <ul>
+      <% @administracion_grupo.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+ 
+<div class="form-group">
+    <%= f.label :nombre, class:"col-sm-1 control-label"  %>
+    <div class="col-sm-3" >
+      <%= f.text_field :nombre, class:"form-control input-sm ", min:"0" %>
+    </div>
+    <%= f.label :activo, class:"col-sm-1 control-label"  %>
+    <div class="col-sm-1" >
+      <%= f.check_box :estado, class:"form-control input-sm ", min:"0" %>
+    </div>
+</div>  
+ 
+  <div class=" form-group">
+    <div class="col-sm-2">
+    </div>
+    <div class="col-sm-9">
+      <%= f.submit "Guardar", class: "btn btn-default "  %>
+    </div>
+  </div> 
+
+<% end %>
+
+ 

@@ -1,0 +1,24 @@
+<tr>
+  <td><%= solicitud.numsol %></td>
+  <%= content_tag :td, truncate(solicitud.consol,length: 70), title: solicitud.consol, data: { toggle: "tooltip"} %>
+  <td><%= solicitud.fecregsol %></td>
+  <td><%= estadoSolicitud(solicitud.estsol) %></td>
+  <td align="right">
+    <div class="btn-group">
+      <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-right">
+          <li><%= link_to "Mostrar", sigesp_solicitudsalmacen_path(solicitud.id) %></li>
+          <% if solicitud.emitida? %>
+            <li><%= link_to "Editar", edit_sigesp_solicitudsalmacen_path(solicitud)  %></li>
+          <% end %>
+          <li><%= link_to "Imprimir", sigesp_solicitudsalmacen_path(solicitud, :format => 'pdf')  %></li>
+          <% if solicitud.emitida? %>
+            <li><%= link_to "Anular", sigesp_solicitudsalmacen_anular_path(solicitud),
+                method: :post, data: { confirm: "Quieres anular la solicitud Nro #{solicitud.id}  ?" } %></li>
+          <% end %>
+      </ul>
+  </div>
+  </td>
+</tr>

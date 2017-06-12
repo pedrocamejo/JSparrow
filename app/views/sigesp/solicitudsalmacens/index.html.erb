@@ -1,0 +1,28 @@
+<% if flash[:error] %>
+    <div class="alert alert-danger" role="alert"><%= flash[:error] %>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+       <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+<% end %> 
+
+ <div class="panel-body2"  style="height: 95%;">
+    <div class="row">
+        <div class="col-sm-4 col-md-4" >
+         <%= link_to "Agregar", new_sigesp_solicitudsalmacen_path,  class: " btn btn-default btn-sm" %>
+        </div>
+        <div class="col-md-8" align="right">
+           <%= buscar(sigesp_solicitudsalmacens_path,["numero solicitud","concepto","estado"]) %>
+        </div>
+    </div>
+    <%= tabla_panel_responsive(
+      [{title:"Nro"},{title:"Concepto"},{title:"Fecha"},{title:"Estado"}],
+      @sigesp_solicituds,
+      partial: "sigesp/solicitudsalmacens/solicitud" 
+      )%>
+    <%= paginador( 
+      @sigesp_solicituds,
+      controller: :solicitudsalmacens,
+      action: :index ) %>
+</div>
+ 

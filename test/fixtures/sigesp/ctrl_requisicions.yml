@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+#one:
+#  codemp: MyString
+#  coduac: MyString
+#  prefijo: MyString
+#  valor: 1
+#  nro_final: 1
+#  maxlen: 1
+#  ultfecha: 2015-03-04
+
+#two:
+#  codemp: MyString
+#  coduac: MyString
+#  prefijo: MyString
+#  valor: 1
+#  nro_final: 1
+#  maxlen: 1
+#  ultfecha: 2015-03-04

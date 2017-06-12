@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# one:
+#   codtipser: MyString
+#   dentipser: MyString
+#   obstipser: MyString
+#   codmil: MyString
+
+# two:
+#   codtipser: MyString
+#   dentipser: MyString
+#   obstipser: MyString
+#   codmil: MyString

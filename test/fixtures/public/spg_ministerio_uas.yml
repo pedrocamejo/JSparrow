@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  codemp: MyString
+  codauc: MyString
+  denuac: MyString
+  resuac: MyString
+  tipuac: MyString
+  hoja: false
+
+two:
+  codemp: MyString
+  codauc: MyString
+  denuac: MyString
+  resuac: MyString
+  tipuac: MyString
+  hoja: false

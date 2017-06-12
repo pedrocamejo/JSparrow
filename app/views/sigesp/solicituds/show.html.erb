@@ -1,0 +1,145 @@
+
+<% if flash[:notice] %>
+    <div class="alert alert-success" role="alert"><%= notice %>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+       <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+<% end %>
+
+<% if flash[:error] %>
+    <div class="alert alert-danger" role="alert"><%= flash[:error] %>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+       <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+<% end %>
+ 
+<div class="panel-body2"  style="height: 95%;">
+  <%= link_to 'Regresar', sigesp_solicituds_path, class: "btn btn-default btn-sm" %>
+</div>
+
+<div class="panel panel-primary">
+  <a name="<%= @solicitud.numsol %>"></a> 
+  <div class="panel-heading">
+      <strong>N°Control:</strong> <%= @solicitud.numsol %>      
+  </div>
+  <div class="panel-body">
+
+    <%= detalle "REGION : ", @solicitud.region.str_descripcion %>
+    <%= detalle "SEDE : ", @solicitud.sede.str_descripcion  %>
+    <%= detalle "SERVICIO : ", @solicitud.servicio.str_descripcion  %>
+    <%= detalle "Fecha : ", @solicitud.fecregsol  %>
+
+    <%= detalle("Tipo : ", tipoSolicitud(@solicitud.tipoSolicitud.dentipsol)) unless @solicitud.tipoSolicitud.nil?  %>
+    <%= detalle "Unidad : ", @solicitud.unidad.denuac  %>
+    <%= detalle "Estado : ",  estadoSolicitud(@solicitud.estsol)  %>
+ 
+    <%= detalle("Fuente de Financiamiento : ", @solicitud.fuenteFinanciamiento.denfuefin) unless @solicitud.fuenteFinanciamiento.nil?  %>
+    <%= detalle("Unidad Administrativa  : ", @solicitud.unidadAdministrativa.denuniadm) unless @solicitud.unidadAdministrativa.nil?  %>
+    <%= detalle("Usuario  : ", @solicitud.usuario.usuario) unless @solicitud.usuario.nil? %>
+    <%= detalle("CONCEPTO  : ",@solicitud.consol,"col-md-12") %>
+
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#detalle" data-toggle="tab">DETALLE REQUISICION</a></li>
+    <li><a href="#cargo" data-toggle="tab">CARGOS DEL DETALLE</a></li>
+    <li><a href="#gastos" data-toggle="tab">CUENTAS GASTOS</a></li>
+    <li><a href="#cargorequisicion" data-toggle="tab">CARGOS REQUISICION</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane active" id="detalle">
+      <%= render(
+        partial: "sigesp/solicituds/detalle_articulos", 
+        locals: { articulos: @solicitud.articulos, solicitud: @solicitud } ) if @solicitud.codtipsol == "01"  %>
+
+      <%= render(
+        partial: "sigesp/solicituds/detalle_servicios", 
+        locals: { servicios: @solicitud.servicios, solicitud: @solicitud  } ) if @solicitud.codtipsol == "02"  %>
+
+    </div>   <!-- end detalle --> 
+ 
+
+    <div class="tab-pane" id="cargo">
+      <table class="table">
+      <%= table_head([{:title => "Codigo"},{:title => "Codigo Cargo"},{:title => "Descripcion Cargo"},{:title => "%"}]) %>
+      <tbody class="detallesolictud">
+        <% if @solicitud.codtipsol == "01"   %>
+          <% @solicitud.articulos_cargos.each do |articulo_cargo| %>
+          <tr> 
+            <td><%= articulo_cargo.articulo.codart %></td>
+            <td><%= articulo_cargo.cargo.codcar %></td>
+            <td><%= articulo_cargo.cargo.dencar  %></td>
+            <td><%= "#{articulo_cargo.cargo.porcar}%" %></td>
+          </tr>
+          <% end %>
+        <% else %>
+          <% @solicitud.servicios_cargos.each do |servicio_cargo| %>
+          <tr>
+            <td><%= servicio_cargo.servicio.codser %></td>
+            <td><%= servicio_cargo.cargo.codcar %></td>
+            <td><%= servicio_cargo.cargo.dencar  %></td>
+            <td><%= "#{servicio_cargo.cargo.porcar}%" %></td>
+          </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+      </table> 
+    </div> <!--  End cargo --> 
+    <div class="tab-pane" id="gastos">
+      <table class="table">
+        <%= table_head([{:title => "Estructura 1"},{:title => "Estructura 2"},{:title => "Estructura 3"},{:title => "Estructura 4"},{:title => "Estructura 5"},{:title => "Cuenta"},{:title => "Monto"}]) %>
+        <tbody class="detallesolictudCargos">
+          <% @solicitud.gastos.each do |gasto| %>
+            <tr>
+              <td><%= gasto.codestpro1 %></td>
+              <td><%= gasto.codestpro2 %></td>
+              <td><%= gasto.codestpro3 %></td>
+              <td><%= gasto.codestpro4 %></td>
+              <td><%= gasto.codestpro5 %></td>
+              <td><%= gasto.spg_cuenta %></td>
+              <td><%= gasto.monto %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table> 
+    </div> <!-- end Gastos  -->
+    <div class="tab-pane" id="cargorequisicion">
+      <table class="table">
+        <%= table_head([{:title => "Cargo"},{:title => "Estructura 1"},{:title => "Estructura 2"},{:title => "Estructura 3"},{:title => "Estructura 4"},{:title => "Estructura 5"},{:title => "Cuenta"}]) %>
+        <tbody class="detallesolictudCargos">
+          <% @solicitud.cargos.each do |cargo| %>
+            <tr>
+              <td><%= cargo.cargo.dencar  %></td>
+              <td><%= cargo.codestpro1 %></td>
+              <td><%= cargo.codestpro2 %></td>
+              <td><%= cargo.codestpro3 %></td>
+              <td><%= cargo.codestpro4 %></td>
+              <td><%= cargo.codestpro5 %></td>
+              <td><%= cargo.spg_cuenta %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table> 
+    </div> <!-- end cargorequisicion  -->
+
+  </div>
+
+  <div class="panel-footer" align="right">
+      <%= link_to "Imprimir",sigesp_solicitud_path(@solicitud, :format => 'pdf'), class: "btn btn-default"%>
+        <!-- <span  class="glyphicon glyphicon-print" style="font-size:15px;"></span> -->
+
+      <% if can? :traspasopresupuestario_compra,Sigesp::Solicitud  %>
+      <%= link_to "Trapaso Presupuestario ",sigesp_solicitud_traspasopresupuestario_path(@solicitud,:pdf),class: "btn btn-default" %>
+        <!--            <span data-toggle="tooltip" data-placement="left" class="glyphicon glyphicon-envelope" title="Traspaso Presupuestario"  style="font-size:15px;"></span>
+        -->
+      <% end %>
+      <% if can? :disponibilidadpresupuestaria_compra,Sigesp::Solicitud  %>
+        <%= link_to "Disponibilidad Presupuestaria",sigesp_solicitud_disponibilidadpresupuestaria_path(@solicitud,:pdf) ,class: "btn btn-default" %>
+           <!--   <span data-toggle="tooltip" data-placement="left" class="glyphicon glyphicon-file" title="Disponibilidad Presupuestaria "  style="font-size:15px;" ></span> -->
+      <% end %>
+  </div>
+</div> <!-- end panel body --> 
+</div>
+
+

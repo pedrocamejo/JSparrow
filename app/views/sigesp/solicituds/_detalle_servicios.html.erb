@@ -1,0 +1,42 @@
+<table class="table">
+  <%= table_head([ 
+  	{:title => "CODIGO"},
+    {title: "PRESUPUESTARIA"},
+  	{:title => "ITEM"},
+  	{:title => "CANTIDAD"},
+  	{:title => "PRECIO"},
+  	{:title => "TOTAL"}],nil,false) %>
+  <tbody class="detallesolictud" style="text-align: center;">
+    <% servicios.each do |servicio| %>
+      <tr>
+        <td><%= servicio.servicio.codser %></td>
+        <td><%= servicio.spg_cuenta %></td>
+        <td><%= servicio.servicio.denser %></td>
+        <td><%= servicio.canser %></td>
+        <td><%= servicio.monpre %></td>
+        <td style="text-align: right;"><%= servicio.monser %></td>
+      </tr>
+    <% end %>
+  </tbody>
+<tfoot>
+  <% solicitud.servicios.group(:spg_cuenta).sum(:monser).each do |art| %>
+    <tr>
+      <td colspan="5"  style="text-align: right;"><strong>CUENTA PRESUPUESTARIA <%= art[0] %></strong></td>    
+      <td style="text-align: right;"><%= moneda_venezuela art[1] %></td>    
+    </tr>
+  <% end %>
+  <tr>
+    <td colspan="5"  style="text-align: right;"><strong>Monto :</strong></td>    
+    <td style="text-align: right;"><%= moneda_venezuela solicitud.monto %></td>    
+  </tr>
+  <tr>
+    <td colspan="5"  style="text-align: right;"><strong>Cargo :</strong></td>    
+    <td style="text-align: right;"><%= moneda_venezuela solicitud.montotcar %></td>    
+  </tr>
+  <tr>
+    <td colspan="5"  style="text-align: right;"><strong>Total :</strong></td>    
+    <td style="text-align: right;"><%= moneda_venezuela solicitud.monbasinm %></td>    
+  </tr>
+</tfoot>
+
+</table> 

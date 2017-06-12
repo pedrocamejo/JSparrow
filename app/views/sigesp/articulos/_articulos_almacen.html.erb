@@ -1,0 +1,64 @@
+<div class="buscararticulo col-md-12" align="right" style="border-bottom: 1px solid #428bca; padding-bottom:4px;" >
+  <%= form_tag  sigesp_articulos_almacen_path(), class: 'form-inline formbuscar',   method: 'GET', remote: true  do  %>     
+    <div class="form-group">
+      <%= select_tag :sort ,
+          options_for_select([
+              ["DENOMINACION","denominacion"],
+              ["CODIGO","codigo"],
+              ["CODIGO FABRICANTE","codigofabricante"]
+          ],params[:sort]),
+          class: "form-control",
+          style: "width:150px;" %>
+      <%= text_field_tag :search,
+          params[:search],
+          class:"form-control",
+           style: "width: 350px;" %>  
+      <%= submit_tag "Buscar",class: 'btn btn-primary buscararticulo', name: :buscar  %>  
+    </div>
+  <% end %>  
+</div>
+
+<div class="table-responsive">
+  <div class ="row buscar">
+  </div>
+  <table class="table articulos  table-striped" style="text-align: center;">
+      <%=table_head([
+          {title:"CODIGO", width: "10%"},
+          {title:"FABRICANTE",width: "8%"},
+          {title:"DENOMINACION",width: "40%"},
+          {title:"TIPO", width: "20%"},
+          {title:"UNIDAD", width: "5%"},
+          {title:"ALMACEN", width: "12%"},
+          {title:"EXISTENCIA", width: "5%"}]) %>
+    <tbody id="catalago">
+	  <% @lista.each do |item| %>
+      <%= content_tag :tr, id: item.codart.delete(' ') do |tr| %>
+	 	    <td><%= item.codart %></td>
+        <td>
+          <%= item.enriquecido.str_codfabricante unless item.enriquecido.nil? %>
+          <%= "N/D" if item.enriquecido.nil? %>
+        </td>
+	 	  	<td><%= truncate(item.denart,length: 90) %></td>
+        <td><%= item.tipo_articulo.dentipart %></td>
+        <td><%= item.unidad.denunimed %></td>
+        <td>
+          <%= select_tag :alamcen, opciones_almacen_articulo(item,params[:almacen]), class: "form-control" %>
+        </td>
+        <td align="center">
+          <%= item.exiart %>
+        </td>
+        <td><%= btn_articulo_almacen(item) %></td>
+      <% end %>
+ 	  <% end %>     
+    </tbody>
+  </table>
+</div> 
+
+<div class="row">
+  <div class="col-md-4">
+    <label><%= page_entries_info @lista %></label>
+  </div>
+  <div align="right" class="col-md-8">
+    <%= will_paginate @lista, renderer:ApplicationHelper::LinkRenderer %>
+  </div>
+</div> 

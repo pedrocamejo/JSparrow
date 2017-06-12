@@ -1,0 +1,86 @@
+  <div  class="form-group form-group-sm">
+    <div class="col-md-11 col-md-offset-1">
+    <%= button_tag "Agregar",
+      class: "btn btn-default btn-sm",
+      type: "button",
+      id: "agregar_producto",
+      onClick: "solicitud.cargar_catalogo_articulos(this)"
+    %>
+    <table class="table table-body" >
+      <%= table_head([ 
+        { title: "Codigo", width: "10%"},
+        { title: "Item", width: "20%" },
+        { title: "Cantidad", width: "15%"},
+        { title: "Precio", width: "15%"},
+        { title: "Total", width: "15%"},
+        { title: "Unidad", width: "10%"},
+        { title: "Existencia", width: "10%"}]) %>
+      <tbody id="detalle_articulos_solicitud" data-canart="<%= solicitud.articulos.size %>">
+        <%= f.fields_for :articulos do |dt_fields| %>
+          <%= content_tag :tr, id: dt_fields.object.codart, data: {
+              codart: dt_fields.object.codart,
+              codalm: dt_fields.object.codalm,
+              denart: dt_fields.object.articulo.denart,
+              exiart: dt_fields.object.articulo.exiart,
+              unidad: dt_fields.object.unidad,
+              porcar: dt_fields.object.articulo.cargo_activo.porcar
+            } do  %> 
+            <td style="width: 10%">
+              <%= dt_fields.hidden_field :codart, class: "codart" %>              
+              <%= dt_fields.hidden_field :codalm, class: "codalm" %>              
+              <%= dt_fields.object.codart %>
+            </td>
+            <td style="width: 20%">
+              <%= dt_fields.object.articulo.denart %>
+            </td>
+            <td style="width: 15%">
+               <%= dt_fields.number_field :canart,
+                class: "cantidad",
+                min: "1",
+                onchange: "solicitud.actualizar_monto()"
+               %>              
+            </td>
+            <td style="width: 15%">
+               <%= dt_fields.number_field :monpre,
+                class: "precio",
+                min: "1",
+                onchange: "solicitud.actualizar_monto()"
+               %>              
+            </td>
+            <td style="width: 15%">
+              <%= dt_fields.object.monart %>
+            </td>
+            <td style="width: 10%">
+              <%= dt_fields.object.unidad %>
+            </td>
+            <td style="width: 10%">
+              <%= dt_fields.object.articulo.exiart %>
+            </td>
+            <td><%= button_tag "Quitar",
+                class:   "btn btn-danger btn-sm",
+                type: "button",
+                onClick: "solicitud.quitarProducto('#{dt_fields.object.codart}')"
+              %>
+            </td>
+          <% end %>
+
+        <% end %>
+      </tbody>
+
+      <tfoot>
+        <tr>
+          <td align="right" style="width: 70%;"><strong>Monto :</strong></td>      
+          <td align="right"><label id="monto"><%= moneda_venezuela(@solicitud.monto|| 0) %></label></td>  </tr>
+        <tr>
+          <td align="right" style="width: 70%;"><strong>Cargo :</strong></td>      
+          <td align="right"><label id="cargo"><%= moneda_venezuela(@solicitud.montotcar || 0) %></label></td>
+        </tr>
+        <tr>
+          <td  align="right" style="width: 70%;"><strong>Total :</strong></td>      
+          <td align="right"><label id="total"><%= moneda_venezuela(@solicitud.monbasinm || 0) %></label></td>      
+        </tr>
+      </tfoot>
+
+    </table>        
+    </div>
+  </div> 

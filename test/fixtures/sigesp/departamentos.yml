@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+#one:
+#  codemp: MyString
+#  coddep: MyString
+#  dendep: MyString
+#  coddepp: MyString
+#  nivel: MyString
+#  codperresponsable: MyString
+
+#two:
+#  codemp: MyString
+#  coddep: MyString
+#  dendep: MyString
+#  coddepp: MyString
+#  nivel: MyString
+#  codperresponsable: MyString

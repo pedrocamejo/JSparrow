@@ -1,0 +1,22 @@
+<div class="panel-body2"  style="height: 95%;">
+  <%= link_to 'Regresar', plantillas_path, class: "btn btn-default btn-sm" %>
+  <%= link_to 'Editar',edit_plantilla_path(@plantilla), class: "btn btn-default btn-sm" %>
+</div>
+<div class="panel-body2"  style="height: 95%; padding-top: 10px;">
+  <%= render partial: "/shared/flash_messages", flash: flash %> 
+  <%= detalle "Id : ",@plantilla.id %>
+  <%= detalle "Nombre : ",@plantilla.nombre  %>
+  <%= detalle "Pertenece a  : ",(@plantilla.compra? ? "COMPRA": "ALMACEN" ) %>
+  <%= detalle "Descripción : ",@plantilla.descripcion, "col-md-12" %>
+  <%= detalle "Tipo : ",tipo_plantilla(@plantilla), "col-md-6" %>
+  
+  <div class="col-md-12" style="margin-bottom:10px;">
+    <div  id="contenido_plantilla" class="col-md-12">
+      <% if @plantilla.tipo == 1 %>
+        <%= render "articulos", plantilla: @plantilla %>
+      <% else %>
+        <%= render "servicios", plantilla: @plantilla %>
+      <% end %>
+    </div>
+  </div>
+</div>

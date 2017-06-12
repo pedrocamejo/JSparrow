@@ -1,0 +1,44 @@
+<div class="panel-body2"  style="height: 95%;">
+  <%= link_to 'Regresar', sigesp_solicitudsalmacens_path, class: "btn btn-default btn-sm" %>
+</div>
+
+
+<div class="panel-body2"  style="height: 95%; padding-top: 10px;">
+  <%= render partial: "/shared/flash_messages", flash: flash %> 
+  <a name="arriba"></a> 
+  <% @grupo.solicitudes.each do |solicitud| %>
+    <a href="#<%= solicitud.numsol %>" class="btn btn-primary"><%= solicitud.numsol %></a>
+  <% end %>
+
+  <% @grupo.solicitudes.each do |solicitud| %>
+  <div class="panel panel-primary" style="margin-top: 10px;">
+    <a name="<%= solicitud.numsol %>"></a> 
+    <div class="panel-heading">
+        <strong>N°Control:</strong> <%= solicitud.numsol %>      
+    </div>
+    <div class="panel-body">
+      <%= detalle "Usuario : ", solicitud.usuario.usuario unless solicitud.usuario.nil? %>
+      <%= detalle "Fecha  :",  solicitud.fecregsol, "col-md-3" %>
+      <%= detalle "Unidad Solicitante  :",solicitud.unidad.denuac, "col-md-4" %>
+      <%= detalle "Alamcen  :", solicitud.almacen_articulos.nomfisalm unless   solicitud.almacen_articulos.nil?   %>
+      <%= detalle "Region  :", solicitud.region.str_descripcion, "col-md-3"  %>
+      <%= detalle "Sede  :", solicitud.sede.str_descripcion , "col-md-3"  %>
+      <%= detalle "Servicio  :",  solicitud.servicio.str_descripcion , "col-md-3" %>
+      <%= detalle "Estado  :", estadoSolicitud(solicitud.estsol) , "col-md-3" %>
+      <%= detalle "Concepto  :",  solicitud.consol, "col-md-12" %>
+
+    <div class="col-md-12">
+      <label style="margin-left: 10px;">DETALLE REQUISICION</label>
+      <%= render partial: "sigesp/solicitudsalmacens/detalle_articulos", locals: {articulos: solicitud.articulos} %>
+      <div class="panel-footer" align="right">
+          <%= link_to "IMPRIMIR",
+            sigesp_solicitudsalmacen_path(solicitud, :format => 'pdf'),
+            class:"btn btn-default" %>
+          <a href="#arriba" class="">
+           <span  class="glyphicon glyphicon-arrow-up"></span>
+          </a>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>

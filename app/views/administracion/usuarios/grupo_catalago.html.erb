@@ -1,0 +1,26 @@
+<div class="panel-body2"  style="height: 95%;">
+  <%= link_to 'Regresar',  administracion_usuario_grupos_path(1) ,class:"btn btn-default btn-sm" %>     
+</div>
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">Grupos  </div>
+  	    <div class="panel-body">
+			<table class="table">
+			    <thead>
+			      <tr>
+			        <th>Grupo</th>
+			      </tr>
+			    </thead>
+		   		<tbody>
+				<% @grupos.each do |grupo|%>
+				  <tr  align="rigth" >
+				  	<td><%= grupo.nombre %></td>
+				  	<td><%= button_to "AGREGAR",administracion_usuario_grupo_add_path(params[:usuario_id], grupo_id: grupo.id ), class: "btn btn-default" , data: { confirm: 'Quieres Agregar este Grupo ?' } %>   <td>
+				  </tr>
+				  <% end %>
+			   </tbody>
+			</table>
+		</div>
+  	</div>
+</div>		

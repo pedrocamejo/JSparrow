@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# one:
+#   codemp: MyString
+#   codestpro1: MyString
+#   codestpro2: MyString
+#   denestpro2: MyString
+
+# two:
+#   codemp: MyString
+#   codestpro1: MyString
+#   codestpro2: MyString
+#   denestpro2: MyString

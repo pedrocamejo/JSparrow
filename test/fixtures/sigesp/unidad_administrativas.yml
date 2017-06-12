@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# one:
+#   codemp: MyString
+#   coduniadm: MyString
+#   coduac: MyString
+#   denuniadm: MyString
+#   estemireq: 1
+#   codestpro1: MyString
+#   codestpro2: MyString
+#   codestpro3: MyString
+#   codestpro4: MyString
+#   codestpro5: MyString
+#   coduniadmsig: MyString
+
+# two:
+#   codemp: MyString
+#   coduniadm: MyString
+#   coduac: MyString
+#   denuniadm: MyString
+#   estemireq: 1
+#   codestpro1: MyString
+#   codestpro2: MyString
+#   codestpro3: MyString
+#   codestpro4: MyString
+#   codestpro5: MyString
+#   coduniadmsig: MyString

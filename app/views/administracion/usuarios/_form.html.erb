@@ -1,0 +1,77 @@
+<%= form_for(@administracion_usuario,html: {class:'form-horizontal', role:'form'})  do |f| %>
+
+  <div class="form-group">
+    <%= f.label :cedula , class: "col-sm-2 control-label" %>
+    <div class="col-sm-4" >
+      <% if controller.action_name == "new" %>
+        <%= f.text_field :cedula ,class: "form-control",placeholder: "V-000000", maxlength:10 %>
+      <% else %>
+        <%= f.text_field :cedula ,class: "form-control",placeholder: "V-000000", maxlength:10, disabled:"true" %>
+      <% end %>
+    </div>
+    <%= f.label :email , class:"col-sm-1 control-label" %>
+    <div class="col-sm-4" >
+      <%= f.text_field :email, class:"form-control input-sm ", maxlength:40 %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :nombres , class:"col-sm-2 control-label" %>
+    <div class="col-sm-9" >
+      <%= f.text_field :nombres, class:"form-control input-sm ", maxlength:40 %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :apellidos , class:"col-sm-2 control-label" %>
+    <div class="col-sm-9" >
+      <%= f.text_field :apellidos, class:"form-control input-sm ", maxlength:40 %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :telefono , class:"col-sm-2 control-label" %>
+    <div class="col-sm-4" >
+      <%= f.text_field :telefono, class:"form-control input-sm ", maxlength:15 %>
+    </div>
+
+    <%= f.label :celular , class:"col-sm-1 control-label" %>
+    <div class="col-sm-4" >
+      <%= f.text_field :celular, class:"form-control input-sm ", maxlength:15 %>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :direccion , class:"col-sm-2 control-label" %>
+    <div class="col-sm-9" >
+      <%= f.text_area :direccion, class:"form-control input-sm ", maxlength:250 %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label  :compra,"Pertenece a compra",class:"col-sm-2 control-label" %>
+    <div class="col-sm-1" >
+      <%= f.check_box :compra, class:"form-control input-sm ", maxlength:250 %>
+    </div>
+  </div>
+  
+
+  <h3 class="page-header"> Datos de Acceso </h3>
+  <div class="form-group" >
+    <%= f.label :username , class:"col-sm-2 control-label" %>
+    <div class="col-sm-4" >
+      <% if controller.action_name == "new" %>
+        <%= f.text_field :username,class:"form-control input-sm ", maxlength:15 %>
+      <% else %>
+        <%= f.text_field :username,class:"form-control input-sm ", maxlength:15,disabled:"true" %>
+      <% end %>
+    </div>
+  </div>
+  <div class=" form-group">
+    <div class="col-sm-2">
+    </div>
+    <div class="col-sm-9">
+      <%= f.submit "Guardar" , id: "pp", class: "btn btn-default "  %>
+    </div>
+  </div> 
+<% end %>

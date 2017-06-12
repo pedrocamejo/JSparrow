@@ -1,0 +1,65 @@
+
+<div class="panel-body2"  style="height: 95%;">
+  <%= link_to 'Mostrar', @plantilla, class: "btn btn-default btn-sm" %>
+</div>
+<div class="buscararticulo col-md-12" align="right" style="border-bottom: 1px solid #428bca; padding-bottom:4px;" >
+  <%= form_tag  plantilla_articulos_path(@plantilla), class: 'form-inline formbuscar',   method: 'GET' do  %>     
+    <div class="form-group">
+      <%= select_tag :sort ,
+          options_for_select([
+              ["DENOMINACION","denominacion"],
+              ["CODIGO","codigo"],
+              ["CODIGO FABRICANTE","codigofabricante"]
+          ],params[:sort]),
+          class: "form-control",
+          style: "width:150px;" %>
+      <%= text_field_tag :search,
+          params[:search],
+          class:"form-control",
+           style: "width: 350px;" %>  
+      <%= submit_tag "Buscar",class: 'btn btn-primary buscararticulo', name: :buscar  %>  
+    </div>
+  <% end %>  
+</div>
+
+<div class="table-responsive">
+  <div class ="row buscar">
+  </div>
+  <table class="table articulos  table-striped" style="text-align: center;">
+      <%=table_head([
+          {title:"CODIGO", width: "10%"},
+          {title:"DENOMINACION",width: "40%"},
+          {title:"TIPO", width: "20%"},
+          {title:"UNIDAD", width: "5%"}]) %>
+    <tbody id="catalago">
+    <% @articulos.each do |item| %>
+      <%= content_tag :tr, id: item.codart.delete(' ') do |tr| %>
+        <td><%= item.codart %></td>
+        <td><%= truncate(item.denart,length: 90) %></td>
+        <td><%= item.tipo_articulo.dentipart %></td>
+        <td><%= item.unidad.denunimed %></td>
+        <td>
+          <%= button_to('Agregar',
+           plantilla_articulo_add_path(@plantilla.id,articulo_id: item.codart),
+          method: "post",
+          remote: true ,
+          class:"btn btn-xs btn-primary",
+          data: { 
+            confirm: "Quieres Agregar el articulo #{item.denart}" 
+          }) %>
+        </td>
+      <% end %>
+    <% end %>     
+    </tbody>
+  </table>
+</div> 
+
+<div class="row">
+  <div class="col-md-4">
+    <label><%= page_entries_info @articulos %></label>
+  </div>
+  <div align="right" class="col-md-8">
+    <%= will_paginate @articulos,renderer: BootstrapPagination::Rails, controller: :plantillas, action: :articulos %>
+  </div>
+</div> 
+

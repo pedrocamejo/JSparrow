@@ -1,0 +1,38 @@
+
+<div class="row page-header" style="margin-top:10px;">
+	<div class="col-md-6">
+		<h2>DATOS DE LA REQUISICION</h2>
+	</div>
+	<div class="col-md-6" align="right" >
+		<%= link_to 'Mostrar',sigesp_solicitudsalmacen_path(@sigesp_solicitud),class:"btn btn-default" %>				
+		<%= link_to 'Regresar',sigesp_solicitudsalmacens_path,class:"btn btn-default" %>				
+	</div>
+</div>
+
+<div class="row" id="formulario_editar_solicitud_almacen"> 
+	<%= render 'form',
+			solicitud: @sigesp_solicitud,
+			url:   sigesp_solicitudsalmacen_path(@sigesp_solicitud), 
+			editar: true,
+			almacen: @sigesp_solicitud.almacen_articulos
+	%>
+	<label class="alert alert-dange">Debe Seleccionar por lo menos 1 Articulo </label>
+</div>
+
+
+<div id="modal-articulos" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document" style="width: 95%;">
+    <div class="modal-content">
+     <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Listado de Articulos</h4>
+      </div>
+      <div class="modal-body">
+	      <div id="contenido">
+	      		
+	      	
+	      </div>
+      </div>
+    </div>
+  </div>
+</div>

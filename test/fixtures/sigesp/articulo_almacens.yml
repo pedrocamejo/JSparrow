@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  codemp: MyString
+  codart: MyString
+  codalm: MyString
+  existencia: 1.5
+
+two:
+  codemp: MyString
+  codart: MyString
+  codalm: MyString
+  existencia: 1.5

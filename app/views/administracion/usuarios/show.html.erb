@@ -1,0 +1,36 @@
+<div class="panel-body2"  style="height: 95%;">
+  <%= link_to 'Regresar',  administracion_usuarios_path ,class: "btn btn-default btn-sm" %>     
+  <%= link_to "Permisos",
+    administracion_usuario_permisos_path(@administracion_usuario),
+    class:"btn btn-default" %>
+  <%= link_to "Unidades Administrativas",
+    administracion_usuario_unidades_path(@administracion_usuario),
+    class:"btn btn-default" %>
+  <%= link_to "Grupos ",
+    administracion_usuario_grupos_path(@administracion_usuario),
+    class:"btn btn-default"  %>
+  <%= link_to 'Editar',
+    edit_administracion_usuario_path(@administracion_usuario),
+    class:"btn btn-default" %> 
+</div>
+<div class="panel-body2"  style="height: 95%; padding-top: 10px;">
+  <%= render partial: "/shared/flash_messages", flash: flash %> 
+  <%= detalle "Id : ",@administracion_usuario.id %>
+  <%= detalle "UserName",@administracion_usuario.username %>
+  <%= detalle "Cedula",@administracion_usuario.cedula  %>
+  <%= detalle "Nombres",@administracion_usuario.nombres %>
+  <%= detalle "Apellidos",@administracion_usuario.apellidos %>
+  <%= detalle "Email",@administracion_usuario.email %>
+  <%= detalle "Telefono",@administracion_usuario.telefono %>
+  <%= detalle "Celular",@administracion_usuario.celular  %>
+  <%= detalle "Dirección",@administracion_usuario.direccion  %>
+  <%= detalle "Estado",(@administracion_usuario.estado ? "Activo" : "Inactivo " )  %>
+  <div class="col-md-12">
+    <h4 class="list-group-item-heading" style="font-weight: bold;">Grupos</h4>
+    <ul class="list-group">
+    <% @administracion_usuario.grupos.each do |grupo| %>
+       <li class="list-group-item"><%= grupo.nombre %></li>
+    <% end %>
+    </ul>
+ </div>
+</div>

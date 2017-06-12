@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# one:
+#   id_marca: 1
+#   str_idmarca: MyString
+#   str_descripcion: MyString
+#   bol_estatus: false
+
+# two:
+#   id_marca: 1
+#   str_idmarca: MyString
+#   str_descripcion: MyString
+#   bol_estatus: false

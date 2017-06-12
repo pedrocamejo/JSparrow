@@ -1,0 +1,25 @@
+<tr>
+  <td><%= usuario.username %></td>
+  <td><%= usuario.cedula %></td>
+  <td><%= usuario.nombres %></td>
+  <td><%= usuario.apellidos  %></td>
+  <td><%= usuario.email  %></td>
+  <td><%= usuario.celular  %></td>
+  <td align="right">
+    <div class="btn-group">
+      <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-right">
+           <li><%= link_to 'Mostrar', usuario  %></li>
+           <li><%= link_to 'Editar', edit_administracion_usuario_path(usuario)   %></li>
+           <li><%= link_to 'Permisos', administracion_usuario_permisos_path(usuario)   %></li>
+           <li><%= link_to 'Cambiar Contraseña', administracion_usuario_password_path(usuario)   %></li>
+           <li><%= link_to 'Unidades Administrativas', administracion_usuario_unidades_path(usuario)   %></li>
+           <li><%= link_to 'Grupos', administracion_usuario_grupos_path(usuario)   %></li>
+           <li><%= link_to 'Eliminar',usuario, method: :delete, data: { confirm: 'Quieres Eliminar este Usuario ?' } %></li>
+      </ul>
+  </div>
+  </td>
+</tr>
+  

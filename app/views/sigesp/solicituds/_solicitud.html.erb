@@ -1,0 +1,67 @@
+<tr>
+  <td><%= solicitud.numsol %></td>
+  <td data-toggle="tooltip" 
+  	title="<%= solicitud.unidadAdministrativa.denuniadm unless solicitud.unidadAdministrativa.nil? %>">
+    <%= truncate(solicitud.unidadAdministrativa.denuniadm,length:18) unless solicitud.unidadAdministrativa.nil?  %>
+  </td>
+  <td data-toggle="tooltip" title="<%= solicitud.consol %>">
+    <%= truncate(solicitud.consol,length: 75) %>
+  </td>
+  <td>
+	 <%= tipoSolicitud(solicitud.tipoSolicitud.dentipsol) unless solicitud.tipoSolicitud.nil? %>
+  </td>
+  <td><%= solicitud.fecregsol %></td>
+	<td data-toggle="tooltip" title="<%= estadoSolicitud(solicitud.estsol) %>">
+    <%= estadoSolicitud(solicitud.estsol)%>
+  </td>
+  <td align="right">
+    <div class="btn-group">
+      <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+         	<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-right">
+          <li><%= link_to "Mostrar", solicitud %></li>
+  
+          <% if  solicitud.estsol == 'E'  %>
+	          <li><%= link_to "Editar", edit_sigesp_solicitud_path(solicitud) %></li>
+          <% end %>
+  
+          <li><%= link_to "Imprimir", sigesp_solicitud_path(solicitud,:pdf) %></li>
+	       
+	        <% if can? :editarcompra_compra,Sigesp::Solicitud and solicitud.estsol == 'E' %>
+	          <li><%= link_to "Asignar Precio", sigesp_solicitud_compra_path(solicitud) %></li>
+	        <% end %>
+
+	        <% if can? :editarpresupuesto_compra,Sigesp::Solicitud and (solicitud.estsol == 'E' or solicitud.estsol == 'P')  %>
+	          <li><%= link_to "Asignar Presupuesto", sigesp_solicitud_presupuesto_path(solicitud) %></li>
+	        <% end %>
+
+
+	        <% if can? :reversarcompra,Sigesp::Solicitud and  solicitud.estsol == 'P' %>
+	          <li><%= link_to "Reversar Solicitud ",
+	          			sigesp_solicitud_reversarcompra_path(solicitud),
+	          			method: :post,
+	          			data: { 
+	          				confirm: "Quieres reversar la Requisición #{solicitud.id} ?" 
+	          			}%></li>
+	        <% end %>
+
+	        <% if can? :reversarpresupuesto,Sigesp::Solicitud and solicitud.estsol == 'C'  %>
+	          <li><%= link_to "Reversar Presupuesto", sigesp_solicitud_reversarpresupuesto_path(solicitud), method: :post, data: { confirm: "Quieres reversar la Requisición #{solicitud.id} ?" } %></li>
+	        <% end %>
+
+
+	        <% if solicitud.estsol == 'E' %>
+	        <li>
+	        	<%= link_to "Anular",
+	        		solicitud,
+	        		method: :delete,
+	        		data: { 
+	        			confirm: "Quieres anular la solicitud  #{solicitud.id} ?"
+	      			}%>
+	        </li>
+	        <% end %>
+      </ul>
+  </div>
+  </td>
+</tr>
