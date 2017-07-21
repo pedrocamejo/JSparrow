@@ -30,7 +30,7 @@ prawn_document(:page_layout => :landscape,:force_download=>false) do |pdf|
   end 
 
   pdf.grid([4,0], [6,8]).bounding_box do
-    pdf.indent 10 do  
+    pdf.indent 10, 5 do  
       texto = "<b>CONCEPTO :</b>#{ truncate(@solicitud.consol,length: 650)}"
       pdf.text_box texto, :size => letra_sm-2,:inline_format => true, :align  => :justify  , :valign => :center
     end 
@@ -98,7 +98,7 @@ prawn_document(:page_layout => :landscape,:force_download=>false) do |pdf|
   end
 
   pdf.grid([8,0], [24,11]).bounding_box do
-    pdf.text " \n ESPECIFICACIONES" ,align: :center
+    pdf.text "\n ESPECIFICACIONES" ,align: :center, size: 8
     pdf.table tabla, 
       header: true,
       width: 720,
@@ -146,7 +146,7 @@ prawn_document(:page_layout => :landscape,:force_download=>false) do |pdf|
   nombre = @solicitud.usuario.usuario unless @solicitud.usuario.nil?
 
   pdf.grid([24,0], [25,0]).bounding_box do
-    pdf.text "\nNOMBRES Y APELLIDOS \n #{nombre}",size:letra_sm-4 , align: :center
+    pdf.text "#{nombre}",size:letra_sm-5 , align: :center, valign: :center
     pdf.stroke_bounds
   end 
 
