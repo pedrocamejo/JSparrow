@@ -14,7 +14,7 @@ class Sigesp::Solicitud < ActiveRecord::Base
     foreign_key: "numsol",
     autosave: true,
     validate: true, 
-    dependent: :destroy 
+    dependent: :destroy  
 
   has_many :articulos_cargos,
     class_name: "Sigesp::DtCargo",
@@ -104,12 +104,15 @@ class Sigesp::Solicitud < ActiveRecord::Base
             codestpro4: "00",
             codestpro5: "00"
           )
-        )
+        ) 
       d.monart = d.canart * d.monpre 
       d.spg_cuenta = d.articulo.spg_cuenta
       self.articulos << d  
       if self.tipo.bol_compra
-        cargo = d.articulo.cargo_activo()
+        cargo = Sigesp::Cargo.iva7 if(self.porcar ==  7 )
+        cargo = Sigesp::Cargo.iva8 if(self.porcar ==  8 )
+        cargo = d.articulo.cargo_activo(self.porcar) if self.porcar == 12 
+
         if cargo.nil?
           errors.add(:articulos, "Error el Articulo  #{d.articulo.denart}  no tiene un cargo Definido") 
         else 

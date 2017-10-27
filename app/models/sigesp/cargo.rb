@@ -8,4 +8,12 @@ class Sigesp::Cargo < ActiveRecord::Base
 		read_attribute(self.class.primary_key)
 	end
 
+	def self.iva7 
+		find("00726")
+	end 
+
+	def self.iva8
+		find("00725")
+	end 
+
 end

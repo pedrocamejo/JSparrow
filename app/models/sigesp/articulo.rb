@@ -26,8 +26,9 @@ class Sigesp::Articulo < ActiveRecord::Base
   	 	}
   	}
 
-	def cargo_activo
-		cargos[0] 
+	def cargo_activo item = 12 
+		item ||= 12 
+		cargos.where(porcar: item).first
 	end 
 
 	CAMPOS_BUSQUEDAD = ["codigo","denominacion","codigofabricante"] 

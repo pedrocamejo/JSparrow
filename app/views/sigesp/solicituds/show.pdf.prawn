@@ -16,14 +16,14 @@ prawn_document(:page_layout => :landscape,:force_download=>false) do |pdf|
     end 
 
     pdf.grid([0,4], [3,8]).bounding_box do
-      pdf.text "REQUISICION" , :size => 18, :align=> :center , :valign => :center
+      pdf.text "REQUISICION" , :size => 18, :align=> :center , valign: :center
       pdf.stroke_bounds
     end
 
     pdf.grid([0,9], [3,11]).bounding_box do
       texto = "<b>Nro: </b> #{@solicitud.numsol}\n<b>Fecha : </b> #{@solicitud.fecregsol}"
       pdf.indent 20, 5 do
-        pdf.text texto, valign: :center, align: :right, size: letra_sm, inline_format: true , :valign => :center
+        pdf.text texto, valign: :center, align: :right, size: letra_sm, inline_format: true , valign: :center
       end
       pdf.stroke_bounds
     end
@@ -32,7 +32,7 @@ prawn_document(:page_layout => :landscape,:force_download=>false) do |pdf|
   pdf.grid([4,0], [6,8]).bounding_box do
     pdf.indent 10, 5 do  
       texto = "<b>CONCEPTO :</b>#{ truncate(@solicitud.consol,length: 650)}"
-      pdf.text_box texto, :size => letra_sm-2,:inline_format => true, :align  => :justify  , :valign => :center
+      pdf.text_box texto, :size => letra_sm-2, inline_format: true, align: :justify, valign: :center
     end 
     pdf.stroke_bounds
   end
@@ -40,7 +40,7 @@ prawn_document(:page_layout => :landscape,:force_download=>false) do |pdf|
   pdf.grid([4,9], [4,11]).bounding_box do
     pdf.indent 20, 5 do  
       texto = "<b>TIPO REQUISICION :</b> #{tipoSolicitud(@solicitud.tipoSolicitud.dentipsol)}"
-      pdf.text_box texto , :size => letra_sm-2,:inline_format => true, align: :justify ,:leading => 1.5 , :valign => :center
+      pdf.text_box texto ,size: 7, inline_format: true, align: :justify ,leading: 1.5 , valign: :center
     end 
     pdf.stroke_bounds
   end
@@ -59,7 +59,7 @@ prawn_document(:page_layout => :landscape,:force_download=>false) do |pdf|
   pdf.grid([7,0], [7,5]).bounding_box do
     pdf.indent 20, 5 do  
       texto = "<b>UNIDAD SOLICITANTE :</b> #{@solicitud.unidad.denuac}"
-      pdf.text texto, :size => letra_sm-1,:inline_format => true, :align  => :justify ,:leading => 1.5 , :valign => :center
+      pdf.text texto,size: 7, inline_format: true, :align  => :justify ,:leading => 1.5 , :valign => :center
     end 
     pdf.stroke_bounds
   end 
@@ -104,7 +104,7 @@ prawn_document(:page_layout => :landscape,:force_download=>false) do |pdf|
       width: 720,
       column_widths:  [40,60,80,460,80],
       cell_style: { 
-          size: letra_sm-3,
+          size: 7,
           padding: 2,
           valign: :top,
           align: :justify
@@ -122,23 +122,23 @@ prawn_document(:page_layout => :landscape,:force_download=>false) do |pdf|
   end 
 
   pdf.grid([23,3], [23,5]).bounding_box do
-    pdf.indent 20, 5 do  
-      pdf.text "AUTORIZADO POR RESPONSABLE DE LA UNIDAD O GERENCIA ",size:letra_sm-2 , align: :center, valign: :center 
+    pdf.indent 3, 5 do  
+      pdf.text "AUTORIZADO POR RESPONSABLE DE LA UNIDAD O GERENCIA",size:7 , align: :center, valign: :center 
     end 
     pdf.stroke_bounds
   end 
   
   pdf.grid([23,6], [23,8]).bounding_box do
-    pdf.indent 20, 5 do  
-      pdf.text "AUTORIZADO POR PRESIDENCIA/DIRECCION GENERAL ",size:letra_sm-2 ,align: :center , valign: :center
+    pdf.indent 3, 5 do  
+      pdf.text "AUTORIZADO POR PRESIDENCIA/DIRECCION GENERAL",size:7 ,align: :center , valign: :center
     end 
     pdf.stroke_bounds
   end 
 
   
   pdf.grid([23,9], [23,11]).bounding_box do
-    pdf.bounding_box([2,18], :width => 180) do 
-      pdf.text "POR DIRECCION DE PLANIFICACION Y PRESUPUESTO ",size:letra_sm-2 , align: :center 
+    pdf.indent 3, 5 do  
+      pdf.text "POR DIRECCION DE PLANIFICACION Y PRESUPUESTO",size: 7, align: :center  , valign: :center
     end 
       pdf.stroke_bounds
   end 
@@ -207,14 +207,14 @@ prawn_document(:page_layout => :landscape,:force_download=>false) do |pdf|
   end 
 
   pdf.grid([28,0], [30,3]).bounding_box do
-    cell_1 = pdf.make_cell(content: "NOMBRE :\n CI : \nFIRMA : \n",width: 120,height: 54)
-    cell_2 = pdf.make_cell(content: "FECHA:  \n \n SELLO: ",width: 120)
+    cell_1 = pdf.make_cell(content: "NOMBRE :\n CI : \nFIRMA : \n",width: 120,height: 54,size: 7)
+    cell_2 = pdf.make_cell(content: "FECHA:  \n \n SELLO: ",width: 120,size: 7)
 
     pdf.table [
       [cell_1,cell_2]
       ],
       cell_style: { 
-        size: letra_sm-3,
+        size: 7,
         padding: 2,
         valign: :top,
         align: :justify
@@ -225,14 +225,14 @@ prawn_document(:page_layout => :landscape,:force_download=>false) do |pdf|
 
 
   pdf.grid([28,4], [30,7]).bounding_box do
-    cell_1 = pdf.make_cell(content: "NOMBRE :\n CI : \nFIRMA : \n",width: 120,height: 54)
-    cell_2 = pdf.make_cell(content: "FECHA:  \n \n SELLO: ",width: 120)
+    cell_1 = pdf.make_cell(content: "NOMBRE :\n CI : \nFIRMA : \n",width: 120,height: 54,size: 7)
+    cell_2 = pdf.make_cell(content: "FECHA:  \n \n SELLO: ",width: 120,size: 7)
 
     pdf.table [
       [cell_1,cell_2]
       ],
       cell_style: { 
-        size: letra_sm-3,
+        size: 7,
         padding: 2,
         valign: :top,
         align: :justify
@@ -242,14 +242,14 @@ prawn_document(:page_layout => :landscape,:force_download=>false) do |pdf|
 
 
   pdf.grid([28,8], [30,11]).bounding_box do
-    cell_1 = pdf.make_cell(content: "NOMBRE :\n CI : \nFIRMA : \n",width: 120,height: 54)
-    cell_2 = pdf.make_cell(content: "FECHA:  \n \n SELLO: ",width: 120)
+    cell_1 = pdf.make_cell(content: "NOMBRE :\n CI : \nFIRMA : \n",width: 120,height: 54,size: 7)
+    cell_2 = pdf.make_cell(content: "FECHA:  \n \n SELLO: ",width: 120,size: 7)
 
     pdf.table [
       [cell_1,cell_2]
       ],
       cell_style: { 
-        size: letra_sm-3,
+        size: 7,
         padding: 2,
         valign: :top,
         align: :justify

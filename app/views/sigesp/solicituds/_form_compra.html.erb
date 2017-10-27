@@ -15,6 +15,17 @@
 
   <div class="panel-body2">
    <div class="form-group">
+    <%= label_tag :porcar,"IVA", class:"col-md-2 control-label" %>
+    <div class="col-md-2">
+      <%= f.select :porcar,
+        [12,8,7],{},
+        {class: "form-control input-sm"} 
+      %>
+    </div>  
+  </div>
+
+  <div class="panel-body2">
+   <div class="form-group">
     <%= label_tag :cod_region,"Region", class:"col-md-2 control-label" %>
     <div class="col-md-2">
       <%= f.select :cod_region,

@@ -215,6 +215,7 @@ class Sigesp::SolicitudsController < ApplicationController
         :cod_sede,
         :cod_servicio,
         :consol,
+        :porcar,
         :codtipsol,
         articulos_attributes: [:codart,:canart,:monpre],
         servicios_attributes: [:codser,:canser,:monpre])

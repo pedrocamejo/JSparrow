@@ -213,7 +213,9 @@ class Solicitud
     if $("#formulario").data('compra') == true
       $.each(servicios,(i,e) ->  
         sum += e.cantidad * e.precio
-        cargo += (e.cantidad * e.precio) * (e.porcar /100)
+        porcar = parseFloat($("#solicitud_porcar").val());
+        #cargo += (e.cantidad * e.precio) * (e.porcar /100)
+        cargo += (e.cantidad * e.precio) * (porcar /100)
         $("#detalle_servicios_solicitud").append("""
         <tr id='#{e.codser}'
           data-codser="#{e.codser}"
@@ -281,7 +283,9 @@ class Solicitud
     if $("#formulario").data('compra') == true
       $.each(articulos,(i,e) ->  
         sum += e.cantidad * e.precio
-        cargo += (e.cantidad * e.precio) * (e.porcar /100)
+        porcar = parseFloat($("#solicitud_porcar").val());
+        #cargo += (e.cantidad * e.precio) * (e.porcar /100)
+        cargo += (e.cantidad * e.precio) * (porcar /100)
         $("#detalle_articulos_solicitud").append("""
         <tr id='#{e.codart}'
           data-codart="#{e.codart}"
@@ -457,6 +461,7 @@ class Solicitud
         cod_sede: $("#solicitud_cod_sede").val()
         cod_servicio:  $("#solicitud_cod_servicio").val()
         consol: $("#solicitud_consol").val()
+        porcar: $("#solicitud_porcar").val()
         codtipsol:  "02"
         servicios_attributes: []
       $.each(servicios, (i,e) ->   
@@ -488,6 +493,7 @@ class Solicitud
         cod_servicio:  $("#solicitud_cod_servicio").val()
         consol: $("#solicitud_consol").val()
         codtipsol:  "01"
+        porcar: $("#solicitud_porcar").val()
         articulos_attributes: []
       
       $.each(articulos, (i,e) ->   
@@ -667,3 +673,8 @@ $(document).on 'show.bs.collapse', '#accordion', (e) ->
 
   );
 
+$(document).on 'change', '#solicitud_porcar', (e) ->
+ if $("#formulario").data("codtipsol") is "01"
+  solicitud.actualizar_monto()
+ else
+  solicitud.actualizar_monto_servicios()
